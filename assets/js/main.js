@@ -63,7 +63,7 @@ btnCreate.addEventListener('click', () => {
         let nom = inputNom.value;
         let numero = inputNumero.value;
         const compte = new CompteBancaire(nom, numero);
-        const exist = tableau.find(CompteBancaire => CompteBancaire.nom === nom && CompteBancaire.numero === numero);
+        const exist = tableau.find(CompteBancaire => CompteBancaire.nom === nom || CompteBancaire.numero === numero);
 
         if (!exist && nom !== '' && numero !== '' && !isNaN(numero) && isNaN(nom)) {
             tableau.push(compte);
@@ -71,14 +71,13 @@ btnCreate.addEventListener('click', () => {
         } else if (isNaN(numero)) {
             response('Erreur', 'veuillez entrer un nombre', 'red');
         }
-        else if (!isNaN(numero)) {
+        else if (!isNaN(nom)) {
             response('Erreur', 'veuillez entrer un nom et pas un nombre', 'red');
         }
         else if (nom == '' || numero == '') {
             response('Erreur', 'Veuillez renseigner tous les champs', 'red');
         }
-        else {
-
+        else if (exist) {
             response('Erreur', 'Les identifiants rentrés sont déjà utilisés pour un autre compte', 'red');
         }
         console.log(tableau);
