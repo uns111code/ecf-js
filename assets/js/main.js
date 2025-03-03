@@ -119,7 +119,7 @@ btnDepot.addEventListener('click', () => {
 
         if (exist && montant > 0) {
             exist.solde = Number(exist.solde) + Number(montant);
-            response('Success', `Votre transaction est acceptée pour le compte : ${nom} avec le numéro ${numero}`, 'green');
+            response('Success', `Votre transaction est acceptée pour le compte : ${nom} avec le numéro ${numero}, la solde: ${exist.solde}`, 'green');
         } else if (isNaN(montant) || montant <= 0) {
             response('Erreur', 'veuillez entrer un nombre(positif)', 'red');
         }
